@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Ryan Guo. All rights reserved.
 //
 
+#import <YMAsyncKit/YMAsyncKit.h>
 #import "YMViewController.h"
 
 @interface YMViewController ()
@@ -16,14 +17,20 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+  [super viewDidLoad];
+  
+  dispatch_async_low(^{
+    NSLog(@"Nah..");
+  });
+  
+  dispatch_async_high(^{
+    NSLog(@"Pss..");
+  });
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
 }
 
 @end
