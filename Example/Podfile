@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'YMAsyncKit_Example', :exclusive => true do
+  pod "YMAsyncKit", :path => "../"
+end
+
+target 'YMAsyncKit_Tests', :exclusive => true do
+  pod "YMAsyncKit", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+end
