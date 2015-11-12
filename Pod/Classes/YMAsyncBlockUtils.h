@@ -10,75 +10,23 @@
 
 #import "YMAsyncBlock.h"
 
-#pragma mark - GCD dispatch_async
+#pragma mark - Block manimulate
 
 /**
- *  Dispatch async a block on global queue
+ *  Create a block from inputBlock, no matter how many times outputBlock is invoked, inputBlock will be invoked once
  *
- *  @param identifier global queue identifier, such as DISPATCH_QUEUE_PRIORITY_LOW
- *  @param block      block to queue
+ *  @param inputBlock
+ *
+ *  @return outputBlock, returns YES if it is the first time invoked
  */
-extern void dispatch_async_global(long identifier, YMAsyncVoidBlock __nonnull block);
+extern YMAsyncBOOLBlock __nonnull YMAsyncCreateOnceBlock(YMAsyncVoidBlock __nonnull inputBlock);
 
 /**
- *  Dispatch async a block to global low priority queue
+ *  Create a block from inputBlock, inputBlock will be invoked once when outputBlock is invoked for a certain count
  *
- *  @param block block to queue
- */
-extern void dispatch_async_low(YMAsyncVoidBlock __nonnull block);
-
-/**
- *  Dispatch async a block to global high priority queue
+ *  @param count      the count
+ *  @param inputBlock the inputBlock
  *
- *  @param block block to queue
+ *  @return outputBlock, returns NSComparisonResult between target count and current counter
  */
-extern void dispatch_async_high(YMAsyncVoidBlock __nonnull block);
-
-/**
- *  Dispatch async a block to main queue
- *
- *  @param block block to queue
- */
-extern void dispatch_async_main(YMAsyncVoidBlock __nonnull block);
-
-/**
- *  Dispatch sync a block to main queue
- *
- *  @param block block to queue
- */
-extern void dispatch_sync_main(YMAsyncVoidBlock __nonnull block);
-
-#pragma mark - GCD dispatch_main
-
-/**
- *  Invoke the block if in main thread, else dispatch async to main queue
- *
- *  @param block block to queue
- */
-extern void dispatch_async_main_alt(YMAsyncVoidBlock __nonnull block);
-
-/**
- *  Invoke the block if in main thread, else dispatch sync to main queue
- *
- *  @param block block to queue
- */
-extern void dispatch_sync_main_alt(YMAsyncVoidBlock __nonnull block);
-
-#pragma mark - GCD dispatch_after
-
-/**
- *  Dispatch a block after seconds on a queue
- *
- *  @param queue   the queue
- *  @param seconds delay in seconds
- *  @param block   block to queue
- */
-extern void dispatch_after_seconds(dispatch_queue_t __nonnull queue, NSTimeInterval seconds, YMAsyncVoidBlock __nonnull block);
-
-/**
- *  Dispatch a block after seconds on main queue
- *
- *  @param seconds delay in seconds
- *  @param block   block to queue
- */
-extern void dispatch_main_after(NSTimeInterval seconds, YMAsyncVoidBlock __nonnull block);
+extern YMAsyncCompareBlock __nonnull YMAsyncCreateAllBlock(NSUInteger count, YMAsyncVoidBlock __nonnull inputBlock);

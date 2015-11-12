@@ -26,6 +26,22 @@
   dispatch_async_high(^{
     NSLog(@"Pss..");
   });
+  
+  YMAsyncCompareBlock outputBlock = YMAsyncCreateAllBlock(3, ^{
+    NSLog(@"Bof..");
+  });
+  
+  NSComparisonResult result = outputBlock();
+  NSLog(@"Bof Result: %@", @(result));
+  
+  result = outputBlock();
+  NSLog(@"Bof Result: %@", @(result));
+  
+  result = outputBlock();
+  NSLog(@"Bof Result: %@", @(result));
+  
+  result = outputBlock();
+  NSLog(@"Bof Result: %@", @(result));
 }
 
 - (void)didReceiveMemoryWarning

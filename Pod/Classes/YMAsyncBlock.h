@@ -22,6 +22,27 @@ typedef void (^YMAsyncVoidBlock) ();
  */
 typedef BOOL (^YMAsyncBOOLBlock) ();
 
+/**
+ *  Block accept void, returns NSComparisonResult
+ *
+ *  @return NSComparisonResult
+ */
+typedef NSComparisonResult (^YMAsyncCompareBlock) ();
+
+/**
+ *  General purposed callback block
+ *
+ *  @param error error object if any error occured
+ */
+typedef void (^YMAsyncCallbackBlock) (NSError* __nullable error);
+
+/**
+ *  General purposed operation block, accept a YMAsyncCallbackBlock as input
+ *
+ *  @param callback YMAsyncCallbackBlock, shall be invoked when operation finished
+ */
+typedef void (^YMAsyncOperationBlock) (YMAsyncCallbackBlock __nonnull callback);
+
 #pragma mark - Basic block macros
 
 /**
